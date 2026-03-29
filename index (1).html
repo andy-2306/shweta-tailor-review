@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Review – Shweta Ladies Tailor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .container { max-width: 480px; width: 100%; }
+
+    /* ── Header ── */
+    .header-card {
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      border-radius: 24px;
+      padding: 32px 24px 24px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(233,30,140,0.30);
+      margin-bottom: 18px;
+    }
+    .header-card .icon  { font-size: 52px; line-height: 1; margin-bottom: 10px; }
+    .header-card h1     { font-size: 1.55rem; font-weight: 700; }
+    .header-card .stars { font-size: 1.8rem; margin: 10px 0 6px; letter-spacing: 3px; }
+    .header-card .tagline {
+      font-size: .84rem;
+      background: rgba(255,255,255,0.18);
+      border-radius: 20px;
+      display: inline-block;
+      padding: 4px 14px;
+      margin-top: 6px;
+    }
+
+    /* ── Info note ── */
+    .info-note {
+      background: #fff3e0;
+      border-left: 4px solid #ff9800;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: .80rem;
+      color: #e65100;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* ── Steps ── */
+    .steps-banner {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(156,39,176,.10);
+    }
+    .steps-banner p {
+      font-size: .78rem;
+      color: #6a1b9a;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+    }
+    .steps { display: flex; justify-content: space-between; gap: 8px; }
+    .step {
+      flex: 1;
+      text-align: center;
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+      border-radius: 12px;
+      padding: 10px 6px;
+      font-size: .75rem;
+      color: #880e4f;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .step .num {
+      display: block;
+      width: 26px; height: 26px;
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      color: #fff;
+      border-radius: 50%;
+      font-size: .85rem;
+      font-weight: 700;
+      line-height: 26px;
+      margin: 0 auto 6px;
+    }
+
+    /* ── Section label ── */
+    .reviews-label {
+      font-size: .78rem;
+      color: #9c27b0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    /* ── Review Card ── */
+    .review-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 18px rgba(156,39,176,.10);
+      border-left: 5px solid #e91e8c;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .review-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(233,30,140,.18); }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .card-title    { font-size: 1rem; font-weight: 700; color: #880e4f; }
+    .unique-badge  {
+      font-size: .68rem;
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+      color: #9c27b0;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 3px 9px;
+      border: 1px solid #ce93d8;
+      white-space: nowrap;
+    }
+    .card-stars    { font-size: .95rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-preview {
+      font-size: .90rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      font-style: italic;
+      background: #fce4ec22;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border-left: 3px solid #f48fb1;
+      min-height: 60px;
+    }
+
+    /* ── Button ── */
+    .copy-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      color: #fff;
+      font-size: .98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      letter-spacing: .3px;
+    }
+    .copy-btn:hover  { opacity: .92; }
+    .copy-btn:active { transform: scale(.97); }
+    .copy-btn.success {
+      background: linear-gradient(135deg, #43a047, #2e7d32);
+      animation: pulse .4s ease;
+    }
+    @keyframes pulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 8px;
+      padding: 18px;
+      font-size: .88rem;
+      color: #9c27b0;
+      font-weight: 600;
+    }
+    .footer span { display: block; margin-top: 4px; font-size: .76rem; color: #ba68c8; font-weight: 400; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header-card">
+    <div class="icon">✂️</div>
+    <h1>Shweta Ladies Tailor</h1>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    <div class="tagline">Your review means the world to us 💖</div>
+  </div>
+
+  <!-- Info Note -->
+  <div class="info-note">
+    🔄 Every click generates a unique review to keep it authentic!
+  </div>
+
+  <!-- Steps -->
+  <div class="steps-banner">
+    <p>✨ How it works</p>
+    <div class="steps">
+      <div class="step"><span class="num">1</span>Click any review below</div>
+      <div class="step"><span class="num">2</span>Auto‑copies a unique version</div>
+      <div class="step"><span class="num">3</span>Paste on Google &amp; Submit!</div>
+    </div>
+  </div>
+
+  <!-- Reviews Label -->
+  <div class="reviews-label">💬 Choose Your Review</div>
+
+  <!-- Card 1 -->
+  <div class="review-card">
+    <div class="card-header">
+      <span class="card-title">✨ Excellent Quality</span>
+      <span class="unique-badge">🔄 Unique every time!</span>
+    </div>
+    <div class="card-stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-preview" id="preview1">
+      Excellent stitching quality! My suit was stitched perfectly. Highly recommend Shweta Ladies Tailor to everyone!
+    </div>
+    <button class="copy-btn" id="btn1" onclick="copyAndOpen(0, 'btn1')">📋 Copy &amp; Write Review</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="review-card">
+    <div class="card-header">
+      <span class="card-title">⏰ Timely &amp; Professional</span>
+      <span class="unique-badge">🔄 Unique every time!</span>
+    </div>
+    <div class="card-stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-preview" id="preview2">
+      Very professional and on-time delivery. The blouse fitting was perfect. Will definitely come back again!
+    </div>
+    <button class="copy-btn" id="btn2" onclick="copyAndOpen(1, 'btn2')">📋 Copy &amp; Write Review</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="review-card">
+    <div class="card-header">
+      <span class="card-title">💰 Best Value</span>
+      <span class="unique-badge">🔄 Unique every time!</span>
+    </div>
+    <div class="card-stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-preview" id="preview3">
+      Best ladies tailor in the area. Reasonable prices, great quality, and very friendly service. Loved it!
+    </div>
+    <button class="copy-btn" id="btn3" onclick="copyAndOpen(2, 'btn3')">📋 Copy &amp; Write Review</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    🙏 Thank you for your support!
+    <span>Your kind words help our small business grow 💗</span>
+  </div>
+
+</div>
+
+<script>
+  const GOOGLE_REVIEW_URL =
+    "https://search.google.com/local/writereview?placeid=ChIJiXjYaG-55zsRXmOs-Sw5veE";
+
+  // 4 unique versions per review card
+  const reviewVersions = [
+    [
+      "Excellent stitching quality! My suit was stitched perfectly. Highly recommend Shweta Ladies Tailor to everyone!",
+      "Outstanding work by Shweta Ladies Tailor! The stitching on my suit was flawless. Truly worth every penny!",
+      "Really impressed with the quality of stitching here. My suit fit perfectly. Would highly recommend to all!",
+      "Top-notch stitching quality! Got my suit done and the result was perfect. Shweta Ladies Tailor is the best!"
+    ],
+    [
+      "Very professional and on-time delivery. The blouse fitting was perfect. Will definitely come back again!",
+      "Super happy with my blouse stitching! Delivered on time and the fitting was spot on. Will visit again!",
+      "Blouse stitching was done beautifully and delivered right on time. Very professional service. Coming back soon!",
+      "Got my blouse stitched here and I'm so happy! Perfect fitting, timely delivery, very professional. 5 stars!"
+    ],
+    [
+      "Best ladies tailor in the area. Reasonable prices, great quality, and very friendly service. Loved it!",
+      "Shweta Ladies Tailor is truly the best around! Great quality, affordable pricing, and wonderful service!",
+      "Highly satisfied! The quality of work is amazing and prices are very reasonable. Best tailor nearby!",
+      "Found the best tailor! Excellent quality stitching, budget-friendly prices, and very cooperative staff. Love it!"
+    ]
+  ];
+
+  const previewIds = ["preview1", "preview2", "preview3"];
+
+  function copyAndOpen(cardIndex, btnId) {
+    const btn = document.getElementById(btnId);
+
+    // Pick a random version
+    const versions = reviewVersions[cardIndex];
+    const randomText = versions[Math.floor(Math.random() * versions.length)];
+
+    // Update preview to show which version was picked
+    document.getElementById(previewIds[cardIndex]).innerText = randomText;
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(randomText).then(() => {
+      triggerSuccess(btn);
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement("textarea");
+      ta.value = randomText;
+      ta.style.position = "fixed";
+      ta.style.opacity  = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      triggerSuccess(btn);
+    });
+  }
+
+  function triggerSuccess(btn) {
+    btn.textContent = "✅ Copied! Opening Google Review...";
+    btn.classList.add("success");
+    btn.disabled = true;
+
+    setTimeout(() => {
+      window.open(GOOGLE_REVIEW_URL, "_blank");
+      setTimeout(() => {
+        btn.textContent = "📋 Copy & Write Review";
+        btn.classList.remove("success");
+        btn.disabled = false;
+      }, 3000);
+    }, 1500);
+  }
+</script>
+</body>
+</html>
